@@ -13,7 +13,7 @@ class WeatherService {
   //get weather by cityname
   Future<Weather> getWeatherByCityName(String cityName) async {
     try {
-      //https:api.openweathermap.org/data/2.5/weather?q=London&appid=22beabefe0623bd63046bf8eb854988a&units=metric
+     
 
       final String url = "$BASE_URL?q=$cityName&appid=$apiKey&units=metric";
 
