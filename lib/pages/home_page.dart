@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:weatherapp/models/weather_model.dart';
 import 'package:weatherapp/pages/search_weather_page.dart';
+import 'package:weatherapp/providers/theme_provider.dart';
 import 'package:weatherapp/services/weather_service.dart';
 import 'package:weatherapp/widgets/display_weather.dart';
 
@@ -38,7 +40,21 @@ class _HomePageState extends State<HomePage> {
           "Easy Weather",
           style: TextStyle(fontWeight: FontWeight.w400),
         ),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.light_mode))],
+        actions: [
+          IconButton(
+            onPressed: () {
+              Provider.of<ThemeProvider>(
+                context,
+                listen: false,
+              ).toggleTheme(Theme.of(context).brightness != Brightness.dark);
+            },
+            icon: Icon(
+              Theme.of(context).brightness == Brightness.dark
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+            ),
+          ),
+        ],
       ),
       body: _weather != null
           ? SingleChildScrollView(
